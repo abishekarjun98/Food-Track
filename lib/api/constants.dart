@@ -1,5 +1,5 @@
 class Urls {
-  static String baseUrl = "http://localhost:9874/";
+  static String baseUrl = "https://food-track-back-end.herokuapp.com/";
   static String login = "${baseUrl}login";
   static String register = "${baseUrl}register";
   static String postfoodinfo = "${baseUrl}post_foodinfo";
