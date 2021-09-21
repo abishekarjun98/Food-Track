@@ -3,8 +3,7 @@ import 'dart:async';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:food_track/screens/buyer/buyer_home_screen.dart';
-import 'package:food_track/screens/seller/seller_home_screen.dart';
+import 'package:food_track/screens/authentication/user_type_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,8 +26,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // home: BuyerHomeScreen(),
-      home: SellerHomeScreen(),
+      home: UserTypeScreen(),
       // home: Scaffold(
       //   appBar: AppBar(
       //     title: Text('Barcode Scanner - googleflutter.com'),
