@@ -21,4 +21,6 @@ class CacheManager {
   String getType() => Hive.box(Keys.cred).get(Keys.type);
 
   String getUID() => Hive.box(Keys.cred).get(Keys.uid);
+
+  Future<void> clearCred() async => await Hive.box(Keys.cred).clear();
 }

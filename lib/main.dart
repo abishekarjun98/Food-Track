@@ -4,9 +4,23 @@ import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:food_track/screens/authentication/user_type_screen.dart';
+import 'package:food_track/view/inventory.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(App());
+}
+
+class App extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+            appBar: AppBar(
+              title: Text('FoodTrack'),
+            ),
+            body: Inventory()));
+  }
 }
 
 class MyApp extends StatefulWidget {

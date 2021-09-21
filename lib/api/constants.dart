@@ -7,4 +7,5 @@ class Urls {
   static String addselleritem = "${baseUrl}add_seller_items";
   static String nearbystore = "${baseUrl}near_by_store";
   static String getsearchedfood = "${baseUrl}get_searched_food";
+  static String getinventory = "${baseUrl}get_inventory";
 }
