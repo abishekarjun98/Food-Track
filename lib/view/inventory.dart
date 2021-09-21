@@ -1,4 +1,6 @@
 //@dart=2.9
+import 'dart:convert';
+
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,6 +8,8 @@ import 'package:food_track/api/api_manager.dart';
 import 'package:food_track/models/inventory_response.dart';
 import 'package:food_track/models/result_response.dart';
 import 'package:food_track/view/add_inventory.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io' as Io;
 
 class Inventory extends StatefulWidget {
   @override
@@ -25,13 +29,13 @@ class _InventoryState extends State<Inventory> {
 
   void scanner() {
     switch (stage) {
-      case 1:
+      case 2:
         barcodeScanning();
         break;
-      case 2:
+      case 3:
         foodpicCapturing();
         break;
-      case 3:
+      case 1:
         nutritionScanning();
         break;
     }
@@ -106,5 +110,11 @@ class _InventoryState extends State<Inventory> {
 
   void foodpicCapturing() {}
 
-  void nutritionScanning() {}
+  Future<void> nutritionScanning() async {
+    final imagefile = await ImagePicker().pickImage(
+        source: ImageSource.gallery, preferredCameraDevice: CameraDevice.rear);
+    var bytes = Io.File(imagefile.path.toString()).readAsBytesSync();
+    String img64 = await base64Encode(bytes);
+    ApiManager().textRecognition(img64);
+  }
 }

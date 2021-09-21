@@ -1,4 +1,5 @@
 //@dart=2.9
+import 'dart:convert';
 import 'package:food_track/cache/cache_manager.dart';
 import 'package:food_track/models/auth_response.dart';
 import 'package:food_track/models/inventory_response.dart';
@@ -7,6 +8,7 @@ import 'package:food_track/models/near_by_store.dart';
 import 'package:food_track/models/register_request.dart';
 import 'package:food_track/models/result_response.dart';
 import 'package:food_track/models/searchedfood_response.dart';
+import 'package:food_track/models/textrecognition_response.dart';
 import 'package:http/http.dart' as http;
 import 'constants.dart';
 
@@ -91,5 +93,27 @@ class ApiManager {
       message = "Network Error";
     }
     return ResultResponse(result, message);
+  }
+
+  Future<void> textRecognition(String img64) async {
+    var result = TextRecognitionResponse();
+    var message = "";
+    try {
+      final url = Urls.textrecognition;
+      var payload = {
+        "base64Image": "data:image/jpg;base64,${img64.toString()}"
+      };
+      var header = {"apikey": "eeef9fc4c888957"};
+      var response =
+          await http.post(Uri.parse(url), body: payload, headers: header);
+      result = textRecognitionResponseFromJson(response.body);
+      for (var res in result.parsedResults) {
+        print(res.parsedText);
+      }
+      message = "success";
+    } catch (e) {
+      print(e.toString());
+      message = "Network Error";
+    }
   }
 }
