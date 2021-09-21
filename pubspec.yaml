@@ -32,6 +32,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
+  here_sdk:
+    path: plugins/here_sdk
   flutter_multi_formatter: ^2.3.8
   geolocator: ^7.6.2
   hive: ^2.0.4
