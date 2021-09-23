@@ -8,5 +8,6 @@ class Urls {
   static String nearbystore = "${baseUrl}near_by_store";
   static String getsearchedfood = "${baseUrl}get_searched_food";
   static String getinventory = "${baseUrl}get_inventory";
+  static String getfoodlist = "${baseUrl}get_foodlist";
   static String textrecognition = "https://api.ocr.space/parse/image";
 }

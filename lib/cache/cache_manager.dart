@@ -1,26 +1,43 @@
 //@dart=2.9
 import 'package:food_track/cache/constants.dart';
-import 'package:hive/hive.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CacheManager {
   static CacheManager _instance;
-  CacheManager cache() {
-    _instance ??= CacheManager();
+  static SharedPreferences _prefrences;
+  Future<CacheManager> cache() async {
+    if (_instance == null) {
+      _instance = CacheManager();
+      _prefrences = await SharedPreferences.getInstance();
+    }
     return _instance;
   }
 
-  void storeCred(String phno, String type, String uid) {
-    var box = Hive.box(Keys.cred);
-    box.put(Keys.phno, phno);
-    box.put(Keys.type, type);
-    box.put(Keys.uid, uid);
+  void storeCred(String phno, String uid) {
+    _prefrences.setString(Keys.phno, phno);
+    _prefrences.setString(Keys.uid, uid);
   }
 
-  String getPhoneNumber() => Hive.box(Keys.cred).get(Keys.phno);
+  Future<String> getUID() async {
+    return _prefrences.getString(Keys.uid);
+  }
 
-  String getType() => Hive.box(Keys.cred).get(Keys.type);
+  Future<String> getPhno() async {
+    return _prefrences.getString(Keys.phno);
+  }
 
-  String getUID() => Hive.box(Keys.cred).get(Keys.uid);
+  Future<String> getType() async {
+    return _prefrences.getString(Keys.type);
+  }
 
-  Future<void> clearCred() async => await Hive.box(Keys.cred).clear();
+  void storetype(String type) {
+    _prefrences.setString(Keys.type, type);
+  }
+
+  Future removeCache() async {
+    _prefrences.remove(Keys.phno);
+    _prefrences.remove(Keys.type);
+    _prefrences.remove(Keys.uid);
+    _prefrences.remove(Keys.type);
+  }
 }

@@ -1,7 +1,7 @@
 //@dart=2.9
 import 'dart:convert';
 
-NearByStoreResponse nearByStoreResponseFromJson(String str) =>
+NearByStoreResponse nearByStoreResponeFromJson(String str) =>
     NearByStoreResponse.fromJson(json.decode(str));
 
 String nearByStoreResponseToJson(NearByStoreResponse data) =>
@@ -31,10 +31,30 @@ class NearByStoreResponse {
 
 class Respone {
   Respone({
+    this.details,
+    this.distance,
+  });
+
+  Details details;
+  double distance;
+
+  factory Respone.fromJson(Map<String, dynamic> json) => Respone(
+        details:
+            json["details"] == null ? null : Details.fromJson(json["details"]),
+        distance: json["distance"] == null ? null : json["distance"].toDouble(),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "details": details == null ? null : details.toJson(),
+        "distance": distance == null ? null : distance,
+      };
+}
+
+class Details {
+  Details({
     this.foodItems,
     this.lat,
     this.lon,
-    this.password,
     this.phoneNumber,
     this.storeName,
   });
@@ -42,17 +62,15 @@ class Respone {
   List<String> foodItems;
   double lat;
   double lon;
-  String password;
   String phoneNumber;
   String storeName;
 
-  factory Respone.fromJson(Map<String, dynamic> json) => Respone(
+  factory Details.fromJson(Map<String, dynamic> json) => Details(
         foodItems: json["food-items"] == null
             ? null
             : List<String>.from(json["food-items"].map((x) => x)),
         lat: json["lat"] == null ? null : json["lat"].toDouble(),
         lon: json["lon"] == null ? null : json["lon"].toDouble(),
-        password: json["password"] == null ? null : json["password"],
         phoneNumber: json["phone_number"] == null ? null : json["phone_number"],
         storeName: json["store_name"] == null ? null : json["store_name"],
       );
@@ -63,7 +81,6 @@ class Respone {
             : List<dynamic>.from(foodItems.map((x) => x)),
         "lat": lat == null ? null : lat,
         "lon": lon == null ? null : lon,
-        "password": password == null ? null : password,
         "phone_number": phoneNumber == null ? null : phoneNumber,
         "store_name": storeName == null ? null : storeName,
       };

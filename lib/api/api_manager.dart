@@ -1,7 +1,9 @@
 //@dart=2.9
 import 'dart:convert';
-import 'package:food_track/cache/cache_manager.dart';
+
+import 'package:food_track/feeds_page.dart';
 import 'package:food_track/models/auth_response.dart';
+import 'package:food_track/models/food_list.dart';
 import 'package:food_track/models/inventory_response.dart';
 import 'package:food_track/models/login_request.dart';
 import 'package:food_track/models/near_by_store.dart';
@@ -35,13 +37,17 @@ class ApiManager {
     var result = AuthResponse();
     var message = "";
     try {
-      var response = await client.post(Uri.parse(Urls.login),
-          body: loginRequestToJson(request));
+      var response = await client.post(Uri.parse(Urls.login), body: {
+        "phone_number": request.phonenumber,
+        "password": request.password,
+        "type": request.type
+      });
       result = authResponseFromJson(response.body);
       message = result.message;
       // cache.storeCred(
       //     result.response.phoneNumber, result.response.type, result.token);
     } catch (e) {
+      print(e);
       message = "Network Error";
     }
     return ResultResponse(result, message);
@@ -71,9 +77,11 @@ class ApiManager {
       final url = Urls.nearbystore + "?lat=$lat&lon=$lon";
       var response = await client.get(Uri.parse(url),
           headers: {'authorization': "Ettm3Ld6wCThSROEpS7tcp1Da6m2"});
-      result = nearByStoreResponseFromJson(response.body);
+      result = nearByStoreResponeFromJson(response.body);
+      print(response.body.toString());
       message = "success";
     } catch (e) {
+      print(e);
       message = "Network Error";
     }
     return ResultResponse(result, message);
@@ -115,5 +123,24 @@ class ApiManager {
       print(e.toString());
       message = "Network Error";
     }
+  }
+
+  Future<ResultResponse<FoodListResponse, String>> getfoodList(
+      List<String> list) async {
+    var result = FoodListResponse();
+    var message = "";
+    try {
+      final url = Urls.getfoodlist;
+      var response = await client.post(Uri.parse(url),
+          body: {"list": list},
+          headers: {"authorization": "Ettm3Ld6wCThSROEpS7tcp1Da6m2"});
+      result = foodListResponseFromJson(response.body);
+      print(result);
+      message = "success";
+    } catch (e) {
+      print(e.toString());
+      message = "Network Error";
+    }
+    return ResultResponse(result, message);
   }
 }

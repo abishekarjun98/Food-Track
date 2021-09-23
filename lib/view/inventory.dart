@@ -7,7 +7,6 @@ import 'package:flutter/services.dart';
 import 'package:food_track/api/api_manager.dart';
 import 'package:food_track/models/inventory_response.dart';
 import 'package:food_track/models/result_response.dart';
-import 'package:food_track/view/add_inventory.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io' as Io;
 
@@ -29,13 +28,13 @@ class _InventoryState extends State<Inventory> {
 
   void scanner() {
     switch (stage) {
-      case 2:
+      case 1:
         barcodeScanning();
         break;
-      case 3:
+      case 2:
         foodpicCapturing();
         break;
-      case 1:
+      case 3:
         nutritionScanning();
         break;
     }
