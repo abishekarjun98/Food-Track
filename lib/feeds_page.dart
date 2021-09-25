@@ -43,39 +43,31 @@ class _FeedsPageState extends State<FeedsPage> {
           return ListView.builder(
             itemCount: stores.respone.length,
             itemBuilder: (context, index) {
-              return InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => FoodList(
-                              food: stores.respone[index].details.foodItems)));
-                },
-                child: Card(
-                  child: Padding(
-                    padding: EdgeInsets.all(16),
-                    child: Row(
-                      children: [
-                        Flexible(
-                            flex: 2,
-                            child: Column(
-                              children: [
-                                Text(stores.respone
-                                    .elementAt(index)
-                                    .details
-                                    .storeName),
-                                Text(stores.respone
-                                    .elementAt(index)
-                                    .details
-                                    .phoneNumber),
-                                Text((stores.respone.elementAt(index).distance *
-                                            1000)
-                                        .toInt()
-                                        .toString() +
-                                    " M away")
-                              ],
-                            ))
-                      ],
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListTile(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    side: BorderSide(),
+                  ),
+                  title: Text(
+                    stores.respone.elementAt(index).details.storeName,
+                  ),
+                  subtitle: Text(
+                    stores.respone.elementAt(index).details.phoneNumber,
+                  ),
+                  trailing: Text(
+                    (stores.respone.elementAt(index).distance * 1000)
+                            .toInt()
+                            .toString() +
+                        " M away",
+                  ),
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => FoodList(
+                        food: stores.respone[index].details.foodItems,
+                      ),
                     ),
                   ),
                 ),
