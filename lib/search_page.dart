@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_track/models/result_response.dart';
 import 'package:food_track/models/searchedfood_response.dart';
+import 'package:food_track/utils.dart';
+import 'package:geolocator/geolocator.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -11,6 +13,21 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   Future<ResultResponse<SearchedResponse, String>> _response;
   TextEditingController controller = TextEditingController();
+
+  Position position;
+
+  @override
+  void initState() {
+    super.initState();
+    fetch();
+  }
+
+  Future<void> fetch() async {
+    var pos = await UtilsManager().getPosition();
+    setState(() {
+      position = pos;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
