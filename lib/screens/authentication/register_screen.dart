@@ -34,19 +34,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
       appBar: AppBar(
         title: Text("Food Track"),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => widget.userType == UserType.store
-                ? StoreHomeScreen()
-                : CustomerHomeScreen(),
-          ),
-        ),
-        child: Platform.isIOS
-            ? Icon(Icons.arrow_forward_ios)
-            : Icon(Icons.arrow_forward),
-      ),
+      floatingActionButton: isLoading
+          ? null
+          : FloatingActionButton(
+              onPressed: () => Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => widget.userType == UserType.store
+                      ? StoreHomeScreen()
+                      : CustomerHomeScreen(),
+                ),
+              ),
+              child: Icon(Icons.login),
+            ),
       body: SafeArea(
         child: Center(
           child: isLoading

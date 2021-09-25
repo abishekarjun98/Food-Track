@@ -61,7 +61,7 @@ class AppState extends State<App> {
 //                 pos = snapshot.data;
 //                 return HereMap(onMapCreated: _onMapCreated);
 //               }
-//               return const CircularProgressIndicator();
+//               return const CircularProgressIndicator.adaptive();
 //             }));
 //   }
 

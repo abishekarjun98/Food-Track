@@ -84,7 +84,7 @@ class _FeedsPageState extends State<FeedsPage> {
                           )));
                     });
               } else
-                return Center(child: CircularProgressIndicator());
+                return Center(child: CircularProgressIndicator.adaptive());
             }));
   }
 }

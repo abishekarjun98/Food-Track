@@ -44,29 +44,35 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      floatingActionButton: FloatingActionButton(
-        child: Platform.isIOS
-            ? Icon(Icons.arrow_forward_ios)
-            : Icon(Icons.arrow_forward),
-        onPressed: () async {
-          var phno = "$countryCodeString${phoneController.text}";
-          var pw = pwController.text;
-          var request =
-              LoginRequest(phonenumber: phno, password: pw, type: "sellers");
-          loader();
-          _auth = await ApiManager().login(request);
-          var res = _auth.response as AuthResponse;
-          loader();
-          print(_auth.message);
-          print("$countryCodeString${phoneController.text}");
-          if (_auth.message == "success") {
-            var cache = await CacheManager().cache();
-            cache.storeCred(phno, res.token);
-            Navigator.pop(context);
-            Navigator.of(context).popAndPushNamed('/home');
-          }
-        },
-      ),
+      floatingActionButton: isLoading
+          ? null
+          : FloatingActionButton(
+              child: Icon(Icons.login),
+              onPressed: () async {
+                var phno = "$countryCodeString${phoneController.text}";
+                var pw = pwController.text;
+
+                phno = '+919790546296';
+                pw = 'azaam41';
+
+                var request = LoginRequest(
+                    phonenumber: phno, password: pw, type: "sellers");
+                loader();
+                _auth = await ApiManager().login(request);
+                var res = _auth.response as AuthResponse;
+
+                print(_auth.message);
+                print("$countryCodeString${phoneController.text}");
+                if (_auth.message == "success") {
+                  var cache = await CacheManager().cache();
+                  cache.storeCred(phno, res.token);
+                  Navigator.pop(context);
+                  Navigator.of(context).popAndPushNamed('/home');
+                } else {
+                  loader();
+                }
+              },
+            ),
       appBar: AppBar(
         title: Text("Food Track"),
       ),
