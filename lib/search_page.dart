@@ -2,10 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_track/models/result_response.dart';
 import 'package:food_track/models/searchedfood_response.dart';
-import 'package:food_track/utils.dart';
-import 'package:geolocator/geolocator.dart';
-
-import 'api/api_manager.dart';
 
 class SearchPage extends StatefulWidget {
   @override

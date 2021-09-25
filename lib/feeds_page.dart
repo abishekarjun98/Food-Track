@@ -34,58 +34,58 @@ class _FeedsPageState extends State<FeedsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: FutureBuilder<ResultResponse<NearByStoreResponse, String>>(
-            future: _response,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                print(snapshot.data.message);
-                var stores = snapshot.data.response as NearByStoreResponse;
-                return ListView.builder(
-                    itemCount: stores.respone.length,
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => FoodList(
-                                        food: stores.respone[index].details
-                                            .foodItems)));
-                          },
-                          child: Card(
-                              child: Padding(
-                            padding: EdgeInsets.all(16),
-                            child: Row(
+    return FutureBuilder<ResultResponse<NearByStoreResponse, String>>(
+      future: _response,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          print(snapshot.data.message);
+          var stores = snapshot.data.response as NearByStoreResponse;
+          return ListView.builder(
+            itemCount: stores.respone.length,
+            itemBuilder: (context, index) {
+              return InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => FoodList(
+                              food: stores.respone[index].details.foodItems)));
+                },
+                child: Card(
+                  child: Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Row(
+                      children: [
+                        Flexible(
+                            flex: 2,
+                            child: Column(
                               children: [
-                                Flexible(
-                                    flex: 2,
-                                    child: Column(
-                                      children: [
-                                        Text(stores.respone
-                                            .elementAt(index)
-                                            .details
-                                            .storeName),
-                                        Text(stores.respone
-                                            .elementAt(index)
-                                            .details
-                                            .phoneNumber),
-                                        Text((stores.respone
-                                                        .elementAt(index)
-                                                        .distance *
-                                                    1000)
-                                                .toInt()
-                                                .toString() +
-                                            " M away")
-                                      ],
-                                    ))
+                                Text(stores.respone
+                                    .elementAt(index)
+                                    .details
+                                    .storeName),
+                                Text(stores.respone
+                                    .elementAt(index)
+                                    .details
+                                    .phoneNumber),
+                                Text((stores.respone.elementAt(index).distance *
+                                            1000)
+                                        .toInt()
+                                        .toString() +
+                                    " M away")
                               ],
-                            ),
-                          )));
-                    });
-              } else
-                return Center(child: CircularProgressIndicator.adaptive());
-            }));
+                            ))
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+          );
+        } else
+          return Center(child: CircularProgressIndicator.adaptive());
+      },
+    );
   }
 }
 
