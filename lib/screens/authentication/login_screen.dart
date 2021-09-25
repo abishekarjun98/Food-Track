@@ -52,8 +52,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 var phno = "$countryCodeString${phoneController.text}";
                 var pw = pwController.text;
 
-                phno = '+919790546296';
-                pw = 'azaam41';
+                // phno = '+919790546296';
+                // pw = 'azaam41';
 
                 var request = LoginRequest(
                     phonenumber: phno, password: pw, type: "sellers");
