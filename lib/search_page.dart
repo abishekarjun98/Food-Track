@@ -21,39 +21,27 @@ class _SearchPageState extends State<SearchPage> {
           print(snapshot.data.message);
           var stores = snapshot.data.response as SearchedResponse;
           return ListView.builder(
-              itemCount: stores.response.length,
-              itemBuilder: (context, index) {
-                return Card(
-                    child: Padding(
-                  padding: EdgeInsets.all(16),
-                  child: Row(
-                    children: [
-                      Flexible(
-                          flex: 2,
-                          child: Column(
-                            children: [
-                              Text(stores.response
-                                  .elementAt(index)
-                                  .details
-                                  .storeName),
-                              Text(stores.response
-                                  .elementAt(index)
-                                  .details
-                                  .phoneNumber),
-                              Text(stores.response
-                                      .elementAt(index)
-                                      .distance
-                                      .toInt()
-                                      .toString() +
-                                  " " +
-                                  "KM " +
-                                  "Away"),
-                            ],
-                          ))
-                    ],
-                  ),
-                ));
-              });
+            itemCount: stores.response.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListTile(
+                  title:
+                      Text(stores.response.elementAt(index).details.storeName),
+                  subtitle: Text(
+                      stores.response.elementAt(index).details.phoneNumber),
+                  trailing: Text(stores.response
+                          .elementAt(index)
+                          .distance
+                          .toInt()
+                          .toString() +
+                      " " +
+                      "KM " +
+                      "Away"),
+                ),
+              );
+            },
+          );
         } else
           return Center(child: CircularProgressIndicator.adaptive());
       },
