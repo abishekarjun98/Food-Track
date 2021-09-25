@@ -111,10 +111,11 @@ class _State extends State<MainScreen> {
               ],
             ),
       body: SafeArea(
-        child: IndexedStack(
-          children: _pages,
-          index: _selectedIndex,
-        ),
+        child: _pages.elementAt(_selectedIndex),
+        // child: IndexedStack(
+        //   children: _pages,
+        //   index: _selectedIndex,
+        // ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
