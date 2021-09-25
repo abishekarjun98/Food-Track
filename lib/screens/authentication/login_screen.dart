@@ -62,6 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
           if (_auth.message == "success") {
             var cache = await CacheManager().cache();
             cache.storeCred(phno, res.token);
+            Navigator.pop(context);
             Navigator.of(context).popAndPushNamed('/home');
           }
         },
