@@ -82,7 +82,7 @@ class _InventoryState extends State<Inventory> {
               } else
                 return Text("Error");
             }
-            return CircularProgressIndicator();
+            return CircularProgressIndicator.adaptive();
           }),
     );
   }
