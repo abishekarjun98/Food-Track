@@ -4,18 +4,17 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
         {
             "name": "Solution_challenge",
             "request": "launch",
             "type": "dart",
-            "program":"lib/customer.dart"
+            "program": "lib/buyer.dart"
         },
         {
             "name": "Owner",
             "request": "launch",
             "type": "dart",
-            "program":"lib/store.dart"
+            "program": "lib/seller.dart"
         }
     ]
 }

@@ -5,6 +5,7 @@ import 'package:food_track/cache/cache_manager.dart';
 import 'package:food_track/models/user_type.dart';
 import 'package:food_track/screens/authentication/authentication_wrapper.dart';
 import 'package:food_track/screens/authentication/splash_screen.dart';
+import 'package:food_track/screens/authentication/user_type_screen.dart';
 import 'package:food_track/view/main_page.dart';
 
 class App extends StatefulWidget {
@@ -36,9 +37,11 @@ class AppState extends State<App> {
     return MaterialApp(
       title: "FoodTruck",
       debugShowCheckedModeBanner: false,
-      initialRoute: '/splash',
+      // initialRoute: '/splash',
+      initialRoute: '/type',
       routes: {
         '/splash': (context) => SplashScreen(),
+        '/type': (context) => UserTypeScreen(),
         '/auth': (context) => AuthenticationScreen(userType: userType),
         '/home': (context) => MainScreen(type: widget.type)
       },

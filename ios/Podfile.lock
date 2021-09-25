@@ -6,19 +6,19 @@ PODS:
   - Flutter (1.0.0)
   - geolocator_apple (1.2.0):
     - Flutter
-  - here_sdk (4.8.3.0.6497.release):
-    - Flutter
   - image_picker (0.0.1):
     - Flutter
   - MTBBarcodeScanner (5.0.11)
+  - shared_preferences (0.0.1):
+    - Flutter
   - SwiftProtobuf (1.17.0)
 
 DEPENDENCIES:
   - barcode_scan (from `.symlinks/plugins/barcode_scan/ios`)
   - Flutter (from `Flutter`)
   - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
-  - here_sdk (from `.symlinks/plugins/here_sdk/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
+  - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
 
 SPEC REPOS:
   trunk:
@@ -32,18 +32,18 @@ EXTERNAL SOURCES:
     :path: Flutter
   geolocator_apple:
     :path: ".symlinks/plugins/geolocator_apple/ios"
-  here_sdk:
-    :path: ".symlinks/plugins/here_sdk/ios"
   image_picker:
     :path: ".symlinks/plugins/image_picker/ios"
+  shared_preferences:
+    :path: ".symlinks/plugins/shared_preferences/ios"
 
 SPEC CHECKSUMS:
   barcode_scan: a5c27959edfafaa0c771905bad0b29d6d39e4479
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
   geolocator_apple: b741765c55dc21950e3e106e8b3584e55cf81ce5
-  here_sdk: 78411afc5a504af9480690e1eb8bea32df6526ca
   image_picker: e06f7a68f000bd36f552c1847e33cda96ed31f1f
   MTBBarcodeScanner: f453b33c4b7dfe545d8c6484ed744d55671788cb
+  shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
   SwiftProtobuf: 9c85136c6ba74b0a1b84279dbf0f6db8efb714e0
 
 PODFILE CHECKSUM: cc1f88378b4bfcf93a6ce00d2c587857c6008d3b
