@@ -37,68 +37,14 @@ class AppState extends State<App> {
     return MaterialApp(
       title: "FoodTruck",
       debugShowCheckedModeBanner: false,
+
       // initialRoute: '/splash',
-      initialRoute: '/type',
+      initialRoute: '/splash',
       routes: {
         '/splash': (context) => SplashScreen(),
-        '/type': (context) => UserTypeScreen(),
         '/auth': (context) => AuthenticationScreen(userType: userType),
         '/home': (context) => MainScreen(type: widget.type)
       },
     );
   }
 }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//         debugShowCheckedModeBanner: false,
-//         title: 'HERE SDK for Flutter - Hello Map!',
-//         home: FutureBuilder<Position>(
-//             future: _currentPosition,
-//             builder: (BuildContext context, AsyncSnapshot<Position> snapshot) {
-//               if (snapshot.hasData) {
-//                 pos = snapshot.data;
-//                 return HereMap(onMapCreated: _onMapCreated);
-//               }
-//               return const CircularProgressIndicator.adaptive();
-//             }));
-//   }
-
-//   Future<void> _onMapCreated(HereMapController hereMapController) async {
-//     hereMapController.setWatermarkPosition(WatermarkPlacement.bottomLeft, 0);
-
-//     hereMapController.mapScene.addMapArrow(MapArrow(
-//         GeoPolyline(<GeoCoordinates>[
-//           GeoCoordinates(pos.latitude, pos.longitude),
-//           GeoCoordinates(pos.latitude, pos.longitude)
-//         ]),
-//         27,
-//         Colors.purple));
-//     hereMapController.mapScene.addMapArrow(MapArrow(
-//         GeoPolyline(<GeoCoordinates>[
-//           GeoCoordinates(pos.latitude + 0.002, pos.longitude),
-//           GeoCoordinates(pos.latitude + 0.002, pos.longitude)
-//         ]),
-//         27,
-//         Colors.deepOrange));
-//     hereMapController.mapScene.loadSceneForMapScheme(MapScheme.normalDay,
-//         (MapError error) async {
-//       if (error != null) {
-//         print('Map scene not loaded. MapError: ${error.toString()}');
-//         return;
-//       }
-//       const double distanceToEarthInMeters = 8000;
-//       hereMapController.camera.lookAtPointWithDistance(
-//           GeoCoordinates(pos.latitude, pos.longitude), distanceToEarthInMeters);
-
-//       hereMapController.mapScene.addMapPolyline(MapPolyline(
-//           GeoPolyline(<GeoCoordinates>[
-//             GeoCoordinates(pos.latitude, pos.longitude),
-//             GeoCoordinates(pos.latitude + 0.002, pos.longitude)
-//           ]),
-//           10,
-//           Colors.blue));
-//     });
-//   }
-// }

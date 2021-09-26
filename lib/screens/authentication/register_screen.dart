@@ -4,8 +4,6 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/formatters/masked_input_formatter.dart';
 import 'package:food_track/models/user_type.dart';
-import 'package:food_track/screens/customer/customer_home_screen.dart';
-import 'package:food_track/screens/store/store_home_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   final Function toggleView;
@@ -37,14 +35,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       floatingActionButton: isLoading
           ? null
           : FloatingActionButton(
-              onPressed: () => Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => widget.userType == UserType.store
-                      ? StoreHomeScreen()
-                      : CustomerHomeScreen(),
-                ),
-              ),
+              onPressed: () {},
               child: Icon(Icons.login),
             ),
       body: SafeArea(

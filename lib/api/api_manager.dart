@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:food_track/feeds_page.dart';
 import 'package:food_track/models/auth_response.dart';
+import 'package:food_track/models/food_details.dart';
 import 'package:food_track/models/food_list.dart';
 import 'package:food_track/models/inventory_response.dart';
 import 'package:food_track/models/login_request.dart';
@@ -130,15 +131,44 @@ class ApiManager {
     var result = FoodListResponse();
     var message = "";
     try {
-      final url = Urls.getfoodlist;
-      var response = await client.post(Uri.parse(url),
-          body: {"list": list},
+      var url = Urls.getfoodlist;
+      url = url + "?";
+      for (int i = 0; i < list.length; ++i) {
+        url += 'list=' + list[i];
+        if (i < list.length - 1) url += '&';
+      }
+      print(url);
+      print("getting");
+      var response = await client.get(Uri.parse(url),
           headers: {"authorization": "Ettm3Ld6wCThSROEpS7tcp1Da6m2"});
       result = foodListResponseFromJson(response.body);
+      print(response.body);
       print(result);
+      print("got");
       message = "success";
     } catch (e) {
-      print(e.toString());
+      print("exception" + e);
+      message = "Network Error";
+    }
+    return ResultResponse(result, message);
+  }
+
+  Future<ResultResponse<FoodDetailResponse, String>> admin(
+      String lat, String lon, String rad) async {
+    var result = FoodDetailResponse();
+    var message = "";
+    try {
+      var url = Urls.admin + "?" + "lat=$lat&lon=$lon&rad=$rad";
+      print("getting");
+      var response = await client.get(Uri.parse(url),
+          headers: {"authorization": "Ettm3Ld6wCThSROEpS7tcp1Da6m2"});
+      result = foodDetailsResponseFromJson(response.body);
+      print(response.body);
+      print(result);
+      print("got");
+      message = "success";
+    } catch (e) {
+      print("exception" + e);
       message = "Network Error";
     }
     return ResultResponse(result, message);

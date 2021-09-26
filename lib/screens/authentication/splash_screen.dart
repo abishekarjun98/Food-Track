@@ -27,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen>
 
   Future<void> anim() async {
     controller = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 4000));
+        vsync: this, duration: Duration(milliseconds: 1000));
     animIn = Tween<double>(
       begin: 1.0,
       end: 0.0,
@@ -53,60 +53,3 @@ class _SplashScreenState extends State<SplashScreen>
     return Center(child: Text("FoodTrack"));
   }
 }
-
-// @override
-// Widget build(BuildContext context) {
-//   return Scaffold(
-//     body: SafeArea(
-//       child: Column(
-//         crossAxisAlignment: CrossAxisAlignment.center,
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         children: [
-//           Text(
-//             'WELCOME TO HACKATHON',
-//             style: TextStyle(
-//               fontWeight: FontWeight.bold,
-//             ),
-//           ),
-//           Text(
-//             'ARE YOU A STORE OR A CUSTOMER?',
-//             style: TextStyle(
-//               fontWeight: FontWeight.bold,
-//             ),
-//           ),
-//           Row(
-//             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//             children: [
-//               ElevatedButton.icon(
-//                 onPressed: () => Navigator.push(
-//                   context,
-//                   MaterialPageRoute(
-//                     builder: (context) => AuthenticationWrapper(
-//                       showSignUp: true,
-//                       userType: UserType.store,
-//                     ),
-//                   ),
-//                 ),
-//                 icon: Icon(Icons.store),
-//                 label: Text('Store'),
-//               ),
-//               ElevatedButton.icon(
-//                 onPressed: () => Navigator.push(
-//                   context,
-//                   MaterialPageRoute(
-//                     builder: (context) => AuthenticationWrapper(
-//                       showSignUp: true,
-//                       userType: UserType.customer,
-//                     ),
-//                   ),
-//                 ),
-//                 icon: Icon(Icons.people),
-//                 label: Text('Customer'),
-//               ),
-//             ],
-//           ),
-//         ],
-//       ),
-//     ),
-//   );
-// }

@@ -9,5 +9,6 @@ class Urls {
   static String getsearchedfood = "${baseUrl}get_searched_food";
   static String getinventory = "${baseUrl}get_inventory";
   static String getfoodlist = "${baseUrl}get_foodlist";
+  static String admin = "${baseUrl}admin";
   static String textrecognition = "https://api.ocr.space/parse/image";
 }

@@ -23,15 +23,15 @@ class CacheManager {
   }
 
   Future<String> getPhno() async {
-    return _prefrences.getString(Keys.phno);
+    return await _prefrences.getString(Keys.phno);
   }
 
   Future<String> getType() async {
-    return _prefrences.getString(Keys.type);
+    return await _prefrences.getString(Keys.type);
   }
 
-  void storetype(String type) {
-    _prefrences.setString(Keys.type, type);
+  Future<void> storetype(String type) async {
+    await _prefrences.setString(Keys.type, type);
   }
 
   Future removeCache() async {

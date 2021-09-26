@@ -1,17 +1,12 @@
 //@dart=2.9
-import 'dart:io';
-
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_multi_formatter/formatters/masked_input_formatter.dart';
 import 'package:food_track/api/api_manager.dart';
 import 'package:food_track/cache/cache_manager.dart';
 import 'package:food_track/models/auth_response.dart';
 import 'package:food_track/models/login_request.dart';
 import 'package:food_track/models/result_response.dart';
 import 'package:food_track/models/user_type.dart';
-import 'package:food_track/screens/customer/customer_home_screen.dart';
-import 'package:food_track/screens/store/store_home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   final Function toggleView;
@@ -51,10 +46,6 @@ class _LoginScreenState extends State<LoginScreen> {
               onPressed: () async {
                 var phno = "$countryCodeString${phoneController.text}";
                 var pw = pwController.text;
-
-                // phno = '+919790546296';
-                // pw = 'azaam41';
-
                 var request = LoginRequest(
                     phonenumber: phno, password: pw, type: "sellers");
                 loader();

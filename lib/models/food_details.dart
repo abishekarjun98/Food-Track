@@ -1,72 +1,47 @@
 //@dart=2.9
-
 import 'dart:convert';
 
-FoodListResponse foodListResponseFromJson(String str) =>
-    FoodListResponse.fromJson(json.decode(str));
+FoodDetailResponse foodDetailsResponseFromJson(String str) =>
+    FoodDetailResponse.fromJson(json.decode(str));
 
-String foodListResponseToJson(FoodListResponse data) =>
+String foodDetailsResponseToJson(FoodDetailResponse data) =>
     json.encode(data.toJson());
 
-class FoodListResponse {
-  FoodListResponse({
-    this.message,
+class FoodDetailResponse {
+  FoodDetailResponse({
     this.response,
   });
 
-  String message;
-  List<Response> response;
+  Response response;
 
-  factory FoodListResponse.fromJson(Map<String, dynamic> json) =>
-      FoodListResponse(
-        message: json["message"] == null ? null : json["message"],
+  factory FoodDetailResponse.fromJson(Map<String, dynamic> json) =>
+      FoodDetailResponse(
         response: json["response"] == null
             ? null
-            : List<Response>.from(
-                json["response"].map((x) => Response.fromJson(x))),
+            : Response.fromJson(json["response"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "message": message == null ? null : message,
-        "response": response == null
-            ? null
-            : List<dynamic>.from(response.map((x) => x.toJson())),
+        "response": response == null ? null : response.toJson(),
       };
 }
 
 class Response {
   Response({
-    this.foods,
+    this.imageUrl,
+    this.name,
+    this.nutritions,
+    this.price,
+    this.quantity,
   });
-
-  Foods foods;
-
-  factory Response.fromJson(Map<String, dynamic> json) => Response(
-        foods: json["foods"] == null ? null : Foods.fromJson(json["foods"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "foods": foods == null ? null : foods.toJson(),
-      };
-}
-
-class Foods {
-  Foods(
-      {this.imageUrl,
-      this.name,
-      this.nutritions,
-      this.price,
-      this.quantity,
-      this.isSelected});
 
   String imageUrl;
   String name;
   List<Nutritions> nutritions;
   String price;
   String quantity;
-  bool isSelected = false;
 
-  factory Foods.fromJson(Map<String, dynamic> json) => Foods(
+  factory Response.fromJson(Map<String, dynamic> json) => Response(
         imageUrl: json["image_url"] == null ? null : json["image_url"],
         name: json["name"] == null ? null : json["name"],
         nutritions: json["nutritions"] == null

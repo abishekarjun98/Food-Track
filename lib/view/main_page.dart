@@ -5,8 +5,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_track/api/api_manager.dart';
 import 'package:food_track/cache/cache_manager.dart';
+import 'package:food_track/feeds_page.dart';
 import 'package:food_track/models/result_response.dart';
 import 'package:food_track/models/searchedfood_response.dart';
+import 'package:food_track/view/inventory.dart';
 import 'package:geolocator/geolocator.dart';
 import '../utils.dart';
 
@@ -111,17 +113,11 @@ class _State extends State<MainScreen> {
               ],
             ),
       body: SafeArea(
-        child: _pages.elementAt(_selectedIndex),
+        child: Inventory(),
         // child: IndexedStack(
         //   children: _pages,
         //   index: _selectedIndex,
         // ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        items: _buttons,
       ),
     );
   }

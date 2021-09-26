@@ -6,31 +6,12 @@ import 'package:geolocator/geolocator.dart';
 class UtilsManager {
   static List<Widget> buyerNavPage() => <Widget>[
         FeedsPage(),
-        SearchPage(),
-        Text(
-          'Index 2: Cart',
-        ),
-        Text(
-          'Index 3: Profile',
-        ),
       ];
 
   static List<BottomNavigationBarItem> buyerNavButton() => [
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
           label: 'Feed',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.search),
-          label: 'Search',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.shopping_cart),
-          label: 'Cart',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.face),
-          label: 'Profile',
         ),
       ];
   static List<Widget> sellerNavPage() => <Widget>[
